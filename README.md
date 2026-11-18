@@ -7,7 +7,7 @@ Java 17 + Spring Boot + Spring AI backend for question answering over PDF docume
 `PDF upload -> PDFBox page extraction -> token chunks -> OpenAI embeddings -> pgvector`  
 `Question -> embedding -> top-k similarity search -> context-only LLM prompt -> answer + sources`
 
-## Requirements
+## All Requirements
 
 - Java 17+
 - Maven 3.9+
