@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RAG Document Assistant</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./app.js" defer></script>
+</head>
+<body>
+<div class="app">
+    <aside id="sidebar" class="sidebar" aria-label="Chat history">
+        <div class="brand"><span aria-hidden="true">R</span> RAG Assistant</div>
+        <h2>Chat history</h2>
+        <nav id="history" aria-label="Recent chats"></nav>
+        <button id="newChat" class="new-chat" type="button" aria-label="New chat" title="New chat">+</button>
+    </aside>
+
+    <main class="workspace">
+        <header class="toolbar">
+            <button id="historyToggle" class="history-toggle" aria-controls="sidebar" aria-expanded="false" type="button">History</button>
+            <button id="documentsToggle" aria-controls="documents" aria-expanded="false" type="button">Documents</button>
+        </header>
+        <div id="chat" class="chat is-empty">
+            <section id="welcome" class="welcome">
+                <h1>Welcome to your document assistant</h1>
+                <p>Add a PDF or ask a question about the documents you’ve already uploaded.</p>
+            </section>
+            <section id="chatMessages" class="messages" aria-label="Conversation" aria-live="polite" hidden></section>
+            <form id="chatForm" class="composer">
+                <input id="questionInput" type="text" aria-label="Your question" placeholder="Ask about your PDFs" autocomplete="off" required>
+                <div class="composer-actions">
+                    <button id="uploadButton" type="button" aria-haspopup="dialog">+ Upload PDFs</button>
+                    <button id="sendButton" class="primary" type="submit">Send <span aria-hidden="true">↑</span></button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <aside id="documents" class="documents" aria-labelledby="documentsTitle" hidden>
+        <div class="panel-heading">
+            <h2 id="documentsTitle">Documents</h2>
+            <button id="closeDocuments" type="button" aria-label="Close documents">×</button>
+        </div>
+        <p id="documentCount" class="muted"></p>
+        <div id="documentList" class="document-list"></div>
+        <p id="documentStatus" class="muted" role="status"></p>
+        <button id="uploadMore" type="button" aria-haspopup="dialog">+ Upload more</button>
+    </aside>
+</div>
+
+<dialog id="uploadDialog" aria-labelledby="uploadTitle">
+    <div class="panel-heading">
+        <h2 id="uploadTitle">Upload PDFs</h2>
+        <form method="dialog"><button aria-label="Close upload dialog" autofocus>×</button></form>
+    </div>
+    <p class="muted">Select up to 40 text-based PDFs per batch. Each PDF can be up to 20 MB and 500 pages. You can add more batches to this chat.</p>
+    <div id="dropZone" class="drop-zone">
+        <p>Drag and drop PDFs here</p>
+        <button id="browseFiles" type="button">Browse files</button>
+        <input id="pdfInput" type="file" accept=".pdf,application/pdf" multiple hidden>
+    </div>
+    <p id="uploadStatus" role="status"></p>
+    <ul id="uploadList" class="upload-list" aria-label="File upload progress"></ul>
+    <button id="viewDocuments" type="button" hidden>View documents</button>
+</dialog>
+</body>
+</html>

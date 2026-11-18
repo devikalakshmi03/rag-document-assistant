@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS uploaded_documents (
+ id UUID PRIMARY KEY,
+ filename TEXT NOT NULL,
+ sha256 VARCHAR(64) NOT NULL UNIQUE,
+ page_count INTEGER NOT NULL,
+ chunk_count INTEGER NOT NULL,
+ created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

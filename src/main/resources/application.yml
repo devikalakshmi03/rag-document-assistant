@@ -1,0 +1,58 @@
+
+spring:
+  application:
+    name: rag-document-assistant
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/ragdb}
+    username: ${DB_USER:rag}
+    password: ${DB_PASSWORD:rag}
+
+  flyway:
+    enabled: true
+
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+
+  ai:
+    model:
+      embedding: ollama
+      chat: ollama
+
+    openai:
+      api-key: ${OPENAI_API_KEY:}
+      chat:
+        enabled: false
+      embedding:
+        enabled: false
+
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: qwen2.5:0.5b
+          temperature: 0
+          num-predict: 100
+      embedding:
+        options:
+          model: nomic-embed-text
+
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        dimensions: 768
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+
+
+server:
+  error:
+    include-message: always
+
+rag:
+  chunk-size: 800
+  top-k: 3
+  min-similarity: 0.4

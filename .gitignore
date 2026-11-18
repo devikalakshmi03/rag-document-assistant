@@ -1,0 +1,29 @@
+# Local configuration and credentials
+.env
+.env.*
+!/.env.example
+
+# Maven build output and JVM diagnostics
+target/
+*.log
+hs_err_pid*.log
+replay_pid*.log
+*.hprof
+
+# IDE settings
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local document inputs and evaluation data
+*.[pP][dD][fF]
+!/docs/*.[pP][dD][fF]
+/evaluation/questions.json
